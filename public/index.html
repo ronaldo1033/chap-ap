@@ -71,7 +71,7 @@
         <button onclick="sendMessage()">Enviar</button>
     </div>
     <script>
-        const socket = io("https://mi-chat.onrender.com"); // Cambia esto si es necesario
+        const socket = io("https://chap-ap.onrender.com"); // Cambia esto si es necesario
         let username = prompt("Ingresa tu nombre (ejemplo: Tú o Ella)");
         
         socket.on("message", ({ user, text }) => {
