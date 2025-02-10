@@ -19,7 +19,7 @@
     <button onclick="sendMessage()">Enviar</button>
 
     <script>
-        const socket = io("http://localhost:3000");
+        const socket = io("https://chap-ap.onrender.com");
 
         socket.on("message", (data) => {
             const chatBox = document.getElementById("chat-box");
