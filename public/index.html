@@ -71,40 +71,27 @@
         <button onclick="sendMessage()">Enviar</button>
     </div>
     <script>
-    const socket = io("https://chap-ap.onrender.com"); // Cambia esto si es necesario
-    let username = prompt("Ingresa tu nombre (ejemplo: Tú o Ella)");
-
-    // Función para generar un color aleatorio
-    function getRandomColor() {
-        return "#" + Math.floor(Math.random()*16777215).toString(16);
-    }
-
-    // Obtener o asignar color único al usuario
-    let userColor = localStorage.getItem(username) || getRandomColor();
-    localStorage.setItem(username, userColor);
-
-    socket.on("message", ({ user, text }) => {
-        let chat = document.getElementById("chat");
-        let msgDiv = document.createElement("div");
-        msgDiv.classList.add("message");
+        const socket = io("https://chap-ap.onrender.com"); // Cambia esto si es necesario
+        let username = prompt("Ingresa tu nombre (ejemplo: Tú o Ella)");
         
-        // Aplicar color al usuario
-        msgDiv.style.backgroundColor = localStorage.getItem(user) || getRandomColor();
-        msgDiv.innerText = `${user}: ${text}`;
+        socket.on("message", ({ user, text }) => {
+            let chat = document.getElementById("chat");
+            let msgDiv = document.createElement("div");
+            msgDiv.classList.add("message", user === username ? "mine" : "theirs");
+            msgDiv.innerText = `${user}: ${text}`;
+            chat.appendChild(msgDiv);
+            chat.scrollTop = chat.scrollHeight;
+        });
 
-        chat.appendChild(msgDiv);
-        chat.scrollTop = chat.scrollHeight;
-    });
-
-    function sendMessage() {
-        let messageInput = document.getElementById("message");
-        let text = messageInput.value.trim();
-        if (text) {
-            socket.emit("message", { user: username, text });
-            messageInput.value = "";
+        function sendMessage() {
+            let messageInput = document.getElementById("message");
+            let text = messageInput.value.trim();
+            if (text) {
+                socket.emit("message", { user: username, text });
+                messageInput.value = "";
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>
 
