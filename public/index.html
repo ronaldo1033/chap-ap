@@ -72,7 +72,7 @@
     </div>
     <script>
         const socket = io("https://chap-ap.onrender.com"); // Cambia esto si es necesario
-        let username = prompt("Ingresa tu nombre (ejemplo: Tú o Ella)");
+        let username = prompt("Ingresa tu nombre");
         
         socket.on("message", ({ user, text }) => {
             let chat = document.getElementById("chat");
