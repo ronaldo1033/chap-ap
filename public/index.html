@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-    <h2>Chat con tu Enamorada 💖</h2>
+    <h2>Solos tu y yo 💖</h2>
     <div id="chat"></div>
     <div id="inputContainer">
         <input type="text" id="message" placeholder="Escribe un mensaje...">
@@ -72,7 +72,7 @@
     </div>
     <script>
         const socket = io("https://chap-ap.onrender.com"); // Cambia esto si es necesario
-        let username = prompt("Ingresa tu nombre (ejemplo: Tú o Ella)");
+        let username = prompt("Ingresa tu nombre");
         
         socket.on("message", ({ user, text }) => {
             let chat = document.getElementById("chat");
